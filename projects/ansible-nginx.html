@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ansible Nginx CI/CD Pipeline | Salvatore Palladino</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+
+        <div class="logo">
+            SALVATORE PALLADINO
+        </div>
+
+        <div class="navigation">
+
+            <a href="../index.html">Home</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#contact">Contact</a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <section class="case-study-hero">
+
+        <p class="eyebrow">
+            DEVOPS PROJECT · 01
+        </p>
+
+        <h1>
+            Ansible Nginx<br>
+            CI/CD Pipeline
+        </h1>
+
+        <p class="case-study-intro">
+            A hands-on DevOps project focused on automated deployment,
+            containerization and CI/CD using Git, Jenkins, Ansible,
+            Docker and Nginx.
+        </p>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            01 — OVERVIEW
+        </p>
+
+        <h2>
+            Project Overview
+        </h2>
+
+        <p>
+            The project demonstrates a complete deployment workflow
+            starting from a Git repository and ending with a running
+            Nginx container serving a custom web application.
+        </p>
+
+        <p>
+            Jenkins is used to automate the pipeline, while Ansible
+            handles the deployment configuration and Docker provides
+            the containerized runtime environment.
+        </p>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            02 — ARCHITECTURE
+        </p>
+
+        <h2>
+            Architecture
+        </h2>
+
+        <div class="architecture">
+
+            <div>GitHub</div>
+            <span>→</span>
+            <div>Jenkins</div>
+            <span>→</span>
+            <div>Ansible Runner</div>
+            <span>→</span>
+            <div>Docker</div>
+            <span>→</span>
+            <div>Nginx</div>
+
+        </div>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            03 — TECHNOLOGIES
+        </p>
+
+        <h2>
+            Technologies
+        </h2>
+
+        <div class="technology-list">
+
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>Jenkins</span>
+            <span>Ansible</span>
+            <span>Docker</span>
+            <span>Nginx</span>
+            <span>Linux</span>
+            <span>Python</span>
+
+        </div>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            04 — AUTOMATION
+        </p>
+
+        <h2>
+            Ansible Automation
+        </h2>
+
+        <p>
+            Ansible is responsible for defining the desired state
+            of the Nginx deployment.
+        </p>
+        <div class="case-study-image">
+
+    <img
+        src="../images/ansible-deployment.png"
+        alt="Ansible deployment playbook execution"
+    >
+
+    <p class="image-caption">
+        Ansible playbook executing the automated Nginx deployment.
+    </p>
+
+</div>
+
+        <p>
+            The playbook starts the Nginx container and copies the
+            custom HTML application into the container.
+        </p>
+
+        <pre><code>
+community.docker.docker_container:
+    name: nginx-ansible
+    image: nginx:latest
+    state: started
+    restart_policy: unless-stopped
+    ports:
+        - "8092:80"
+        </code></pre>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            05 — CI/CD
+        </p>
+
+        <h2>
+            Jenkins Pipeline
+        </h2>
+
+        <p>
+            Jenkins automatically checks out the repository and
+            executes the Ansible deployment through a dedicated
+            Ansible runner container.
+        </p>
+        <div class="case-study-image">
+
+    <img
+        src="../images/jenkins-pipeline.png"
+        alt="Jenkins CI/CD pipeline"
+    >
+
+    <p class="image-caption">
+        Jenkins pipeline executing the automated Ansible deployment.
+    </p>
+
+</div>
+        <pre><code>
+GitHub
+   ↓
+Jenkins
+   ↓
+Ansible Runner
+   ↓
+ansible-playbook playbook.yml
+   ↓
+Docker Engine
+        </code></pre>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            06 — CONTAINER DEPLOYMENT
+        </p>
+
+        <h2>
+            Docker Deployment
+        </h2>
+
+        <p>
+            The application runs inside an Nginx Docker container.
+            Docker provides an isolated and reproducible runtime
+            environment for the deployment.
+        </p>
+        
+        <div class="case-study-image">
+
+    <img
+        src="../images/docker-nginx.png"
+        alt="Nginx container running with Docker"
+    >
+
+    <p class="image-caption">
+        Nginx container running through Docker after the automated deployment.
+    </p>
+
+</div>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            07 — TROUBLESHOOTING
+        </p>
+
+        <h2>
+            Troubleshooting
+        </h2>
+
+        <p>
+            During the project, Jenkins initially encountered a
+            Docker socket mounting issue.
+        </p>
+
+        <p>
+            The Jenkins container was recreated while preserving
+            the Jenkins home volume. Docker access was then restored
+            through the Docker socket, allowing Jenkins to launch
+            the Ansible runner container.
+        </p>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            08 — RESULT
+        </p>
+
+        <h2>
+            Deployment Result
+        </h2>
+
+        <p>
+            The final pipeline successfully deploys the Nginx
+            container and serves the custom dashboard on port 8092.
+        </p>
+
+    </section>
+
+
+    <section class="case-study-section">
+
+        <p class="eyebrow">
+            09 — SOURCE CODE
+        </p>
+
+        <h2>
+            GitHub Repository
+        </h2>
+
+        <a
+            class="case-study-button"
+            href="https://github.com/sasytore/ansible-nginx"
+            target="_blank"
+        >
+            View on GitHub
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Salvatore Palladino. All rights reserved.
+    </p>
+
+</footer>
+
+</body>
+
+</html>
